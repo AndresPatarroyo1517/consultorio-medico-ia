@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatBot Médico</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <link href="https://unpkg.com/@tailwindcss/custom-forms/dist/custom-forms.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', path='index.css') }}">
+</head>
+
+<body class="gradient leading-relaxed tracking-wide flex flex-col">
+
+  <nav id="header" class="w-full z-30 top-0 text-white py-1 lg:py-1">
+    <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-1 py-1 lg:py-1">
+      <div class="pl-4 flex items-center">
+        <a class="text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="">
+          <svg class="h-6 w-6 inline-block fill-current text-yellow-700" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20">
+            <path d="M13 8V0L8.11 5.87 3 12h4v8L17 8h-4z" />
+          </svg>
+          Médico IA
+        </a>
+      </div>
+      <div class="flex w-1/2 justify-end content-center">
+        <a class="inline-block text-gray-800 no-underline hover:text-yellow-700 hover:text-underline text-center h-10 p-1 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out"
+          href="https://github.com/AndresPatarroyo1517/Consultorio-Medico-IA" target="_blank">
+          <svg class="fill-current h-9" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path
+              d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.801 8.202 11.387.6.11.793-.258.793-.577 0-.284-.012-1.297-.019-2.537-3.348.727-4.042-1.611-4.042-1.611-.546-1.385-1.332-1.754-1.332-1.754-1.087-.743.083-.728.083-.728 1.202.084 1.834 1.236 1.834 1.236 1.068 1.829 2.8 1.301 3.488.995.108-.774.419-1.301.762-1.601-2.665-.301-5.466-1.332-5.466-5.931 0-1.31.468-2.386 1.236-3.226-.124-.302-.536-1.523.116-3.176 0 0 1.007-.322 3.3 1.231.958-.267 1.982-.401 3.002-.405 1.02.004 2.044.138 3.002.405 2.292-1.553 3.297-1.231 3.297-1.231.656 1.653.24 2.874.116 3.176.77.84 1.234 1.916 1.234 3.226 0 4.61-2.805 5.625-5.475 5.921.43.371.816 1.102.816 2.222 0 1.605-.014 2.898-.014 3.292 0 .317.19.691.8.573C20.566 21.797 24 17.303 24 12c0-6.627-5.373-12-12-12z" />
+          </svg>
+        </a>
+      </div>
+  </nav>
+  <div class="container mx-auto h-screen">
+    <div class="text-center px-3 lg:px-0">
+      <h1 class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
+        ¡Aqui llego tu medico IA especializado!
+      </h1>
+      <p class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8">
+        Hazle una pregunta sobre lo que sientes
+      </p>
+      <button
+        class="mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-48">
+       Preguntar
+      </button>
+    </div>
+    <div class="flex items-center w-full mx-auto content-end">
+      <div class="browser-mockup flex flex-1 m-6 md:px-0 md:m-12 bg-white w-1/2 rounded shadow-xl" id="video-container">
+        <img src="/video" alt="">
+      </div>
+    </div>
+    <section class="bg-gray-100 py-1.5">
+
+      <div class="text-center px-3 lg:px-0">
+        <h1 class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
+          ¡Tu análisis medico ha llegado!
+        </h1>
+        <p class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8 px-12 py-0.5" id="textaRespuesta">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum aliquam temporibus neque doloremque minus laborum placeat cupiditate perspiciatis fuga dignissimos consectetur impedit voluptate rerum totam nisi maiores repellat, distinctio dolor! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus unde excepturi debitis officia aliquid eius facilis magni voluptatibus cumque consectetur tempore, amet animi vel ducimus! Earum quod ratione repellat? Ab! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia iure, debitis, illo odit praesentium aliquam molestias veritatis, culpa deleniti voluptas incidunt? Doloremque, libero repellendus? Veniam, repudiandae ullam! Quisquam, ullam rerum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus vitae, reiciendis officiis minus quam incidunt maiores laborum tenetur blanditiis, officia quasi quidem perspiciatis, culpa aut distinctio rerum dolorem quod architecto?</p>
+      </div>
+  </div>
+  </section>
+  {{request}}
+  <script src="{{ url_for('static', path='index.js') }}"></script>
+</body>
+
+</html>

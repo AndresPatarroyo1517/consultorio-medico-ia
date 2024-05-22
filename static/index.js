@@ -14,6 +14,7 @@ $(document).ready(function () {
             data: JSON.stringify(cuerpo),
             xhrFields: {
                 onprogress: function(e) {
+                    $("#titulo").text('¡Tu análisis medico ha llegado!')
                     var response = e.currentTarget.response;
                     var lines = response.split('\n');
                     var textoAnterior = $("#textaRespuesta").text()

@@ -1,37 +1,31 @@
 import cv2
 import numpy as np
 from fastapi.responses import StreamingResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi import FastAPI, Request
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/video")
 async def video_feed():
     cap = cv2.VideoCapture(0)
-    cont = 0
 
     def generate():
         while True:
             success, frame = cap.read()
             if not success:
                 break
-            else:
-                img = cv2.resize(
-                    frame, (224, 224)
-                )
 
+            ret, buffer = cv2.imencode('.jpg', frame)
 
-                ret, buffer = cv2.imencode('.jpg', frame)
+            if not ret:
+                continue
 
-                if not ret:
-                    continue
-                texto_para_html = str(cont + 1)
-                yield (b'--frame\r\n'
-                       b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n'
-                                                                                b'Content-Type: text/plain\r\n\r\n' +
-                       texto_para_html.encode() + b'\r\n')
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
 
     return StreamingResponse(
         generate(),

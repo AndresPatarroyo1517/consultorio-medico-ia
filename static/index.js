@@ -5,7 +5,7 @@ $(document).ready(function () {
         promptsAnteriores.push(promptActual);
         var cuerpo = {
             "model": "llama3:8b",
-            "prompt": promptActual,
+            "prompt": "Porque mi amigo es gay?",
             "stream": true
         }
         $.ajax({
@@ -13,12 +13,12 @@ $(document).ready(function () {
             url: "http://localhost:11434/api/generate",
             data: JSON.stringify(cuerpo),
             xhrFields: {
-                onprogress: function(e) {
+                onprogress: function (e) {
                     $("#titulo").text('¡Tu análisis medico ha llegado!')
                     var response = e.currentTarget.response;
                     var lines = response.split('\n');
                     var textoAnterior = $("#textaRespuesta").text()
-                    lines.forEach(function(line) {
+                    lines.forEach(function (line) {
                         if (line.trim() !== '') {
                             var responseObject = JSON.parse(line);
                             console.log(responseObject);
@@ -27,9 +27,22 @@ $(document).ready(function () {
                     });
                 }
             },
-        }).done(function(data){
+        }).done(function (data) {
             console.log(data)
         });
     });
+
+    $("#buscar2").on("click", () => {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8000/habla", dataType: 'json', // added data type
+            success: function (res) {
+                console.log(res);
+                alert(res);
+            }
+        }).done(function (data) {
+            console.log(data)
+        });
+    })
 });
 

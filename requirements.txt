@@ -4,6 +4,7 @@ certifi
 charset-normalizer
 click
 colorama
+comtypes
 dnspython
 email_validator
 fastapi
@@ -20,15 +21,20 @@ mdurl
 numpy
 opencv-python
 orjson
+pip
 PyAudio
 pydantic
 pydantic_core
 Pygments
+pypiwin32
 python-dotenv
 python-multipart
+pyttsx3
+pywin32
 PyYAML
 requests
 rich
+setuptools
 shellingham
 sniffio
 SpeechRecognition
@@ -40,3 +46,4 @@ urllib3
 uvicorn
 watchfiles
 websockets
+wheel

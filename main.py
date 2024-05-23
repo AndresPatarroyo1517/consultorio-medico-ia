@@ -6,6 +6,8 @@ from fastapi.templating import Jinja2Templates
 from fastapi import FastAPI, Request
 import speech_recognition as sr
 from fastapi.middleware.cors import CORSMiddleware
+import pyttsx3 as sk
+from pydantic import BaseModel
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -17,6 +19,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+class Texto(BaseModel):
+    texto: str
 
 @app.get("/video")
 async def video_feed():
@@ -57,3 +62,11 @@ async def obtener_habla():
             return texto
         except:
             return 'No se escucho, repite de nuevo'
+        
+
+@app.post("/responde")
+async def hablando(texto_obj: Texto):
+    texto = texto_obj.texto
+    engine = sk.init()
+    engine.say(texto)
+    engine.runAndWait()

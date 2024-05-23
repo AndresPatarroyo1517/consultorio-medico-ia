@@ -103,7 +103,6 @@ $(document).ready(function () {
                         }
                     });
                     $("#titulo").text('¡Tu análisis médico ha llegado!');
-                    $("#textaRespuesta").text(data.response);
                 },
                 error: function (err) {
                     console.error(err);
